@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Gmail Settings",
+  "version": "1.0",
+  "description": "A chrome extension to view gmail layout settings",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "host_permissions": [
+    "https://mail.google.com/*"
+  ],
+  "content_scripts": [
+    {
+      "js": [
+        "src/content.js"
+      ],
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "run": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "Default.png",
+        "Previewpaneoff.png",
+        "Unreadfirst.png",
+        "toggle.png"
+      ],
+      "matches": [
+        "https://mail.google.com/*"
+      ]
+    }
+  ]
+}
